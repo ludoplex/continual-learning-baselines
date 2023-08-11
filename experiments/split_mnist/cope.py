@@ -21,8 +21,11 @@ def cope_smnist(override_args=None):
                           args.cuda >= 0 else "cpu")
 
     n_classes = 10
-    task_scenario = avl.benchmarks.SplitMNIST(args.nb_tasks, return_task_id=False,
-                                              fixed_class_order=[i for i in range(n_classes)])
+    task_scenario = avl.benchmarks.SplitMNIST(
+        args.nb_tasks,
+        return_task_id=False,
+        fixed_class_order=list(range(n_classes)),
+    )
 
     # Make data incremental (one batch = one experience)
     benchmark = avl.benchmarks.data_incremental_benchmark(task_scenario,
@@ -56,8 +59,7 @@ def cope_smnist(override_args=None):
         )
 
     cl_strategy.train(benchmark.train_stream)
-    res = cl_strategy.eval(benchmark.test_stream)
-    return res
+    return cl_strategy.eval(benchmark.test_stream)
 
 
 if __name__ == '__main__':

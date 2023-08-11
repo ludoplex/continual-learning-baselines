@@ -57,7 +57,7 @@ def restrict_dataset_size(scenario, size: int):
         modified_train_ds,
         modified_test_ds,
         other_streams_datasets={"valid": modified_valid_ds}
-        if len(modified_valid_ds) > 0
+        if modified_valid_ds
         else None,
     )
 

@@ -20,10 +20,7 @@ class MAS(unittest.TestCase):
 
         # Recover target from CSV
         target = get_target_result('mas', 'stiny-imagenet')
-        if isinstance(target, list):
-            target_acc = target[0]
-        else:
-            target_acc = target
+        target_acc = target[0] if isinstance(target, list) else target
         target_acc = float(target_acc)
 
         print(f"The target value was {target_acc:.2f}")

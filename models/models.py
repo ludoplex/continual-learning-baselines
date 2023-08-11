@@ -108,8 +108,7 @@ class FlattenP(nn.Module):
         return x.view(batch_size, -1)
 
     def __repr__(self):
-        tmpstr = self.__class__.__name__ + '()'
-        return tmpstr
+        return f'{self.__class__.__name__}()'
 
 
 class MLP_gss(nn.Module):
@@ -119,8 +118,7 @@ class MLP_gss(nn.Module):
 
         for i in range(0, len(sizes) - 1):
             if i < (len(sizes)-2):
-                layers.append(nn.Linear(sizes[i], sizes[i + 1]))
-                layers.append(nn.ReLU())
+                layers.extend((nn.Linear(sizes[i], sizes[i + 1]), nn.ReLU()))
             else:
                 layers.append(nn.Linear(sizes[i], sizes[i + 1], bias=bias))
 

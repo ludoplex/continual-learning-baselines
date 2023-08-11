@@ -118,10 +118,7 @@ def eracl_scifar10(override_args=None):
 
         cl_strategy.eval(scenario.test_stream[: t + 1])
 
-    # Only evaluate at the end on the test stream
-    results = cl_strategy.eval(scenario.test_stream)
-
-    return results
+    return cl_strategy.eval(scenario.test_stream)
 
 
 if __name__ == "__main__":

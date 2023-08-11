@@ -78,7 +78,7 @@ def replay_scifar100(override_args=None):
         *evaluation_metrics,
         loggers=loggers,
     )
-    
+
     storage_policy = ClassBalancedBuffer(args.mem_size, adaptive_size=True)
     plugins = [scheduler_plugin, ReplayPlugin(args.mem_size, storage_policy=storage_policy)]
 
@@ -106,10 +106,7 @@ def replay_scifar100(override_args=None):
 
         cl_strategy.eval(scenario.test_stream[: t + 1])
 
-    # Only evaluate at the end on the test stream
-    results = cl_strategy.eval(scenario.test_stream)
-
-    return results
+    return cl_strategy.eval(scenario.test_stream)
 
 
 if __name__ == "__main__":

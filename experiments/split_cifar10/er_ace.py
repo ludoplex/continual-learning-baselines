@@ -42,7 +42,7 @@ def erace_scifar10(override_args=None):
             ),
         ]
     )
-    
+
     scenario = SplitCIFAR10(
         5,
         return_task_id=False,
@@ -89,8 +89,7 @@ def erace_scifar10(override_args=None):
             drop_last=True,
         )
         cl_strategy.eval(scenario.test_stream[: t + 1])
-    results = cl_strategy.eval(scenario.test_stream)
-    return results
+    return cl_strategy.eval(scenario.test_stream)
 
 
 if __name__ == "__main__":
