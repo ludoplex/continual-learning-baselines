@@ -163,8 +163,7 @@ def online_scr_scifar10(override_args=None):
         model.eval()
         cl_strategy.compute_class_means()
 
-    results = cl_strategy.eval(scenario.test_stream)
-    return results
+    return cl_strategy.eval(scenario.test_stream)
 
 
 if __name__ == '__main__':

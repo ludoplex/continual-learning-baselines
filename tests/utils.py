@@ -21,11 +21,13 @@ def get_target_result(strat_name: str, bench_name: str):
     p = os.path.join(Path(inspect.getabsfile(tests)).parent, 'target_results.csv')
     data = read_csv(p, sep=',', comment='#')
     target = data[(data['strategy'] == strat_name) & (data['benchmark'] == bench_name)]['result'].values[0]
-    if isinstance(target, str) and target.startswith('[') and target.endswith(']'):
-        target = pandas_to_list(target)
-    else:
-        target = float(target)
-    return target
+    return (
+        pandas_to_list(target)
+        if isinstance(target, str)
+        and target.startswith('[')
+        and target.endswith(']')
+        else float(target)
+    )
 
 
 def get_average_metric(metric_dict: dict, metric_name: str = 'Top1_Acc_Stream'):
@@ -39,8 +41,7 @@ def get_average_metric(metric_dict: dict, metric_name: str = 'Top1_Acc_Stream'):
     :return: a number representing the average of all the metric containing `metric_name` in their name
     """
 
-    avg_stream_acc = []
-    for k, v in metric_dict.items():
-        if k.startswith(metric_name):
-            avg_stream_acc.append(v)
+    avg_stream_acc = [
+        v for k, v in metric_dict.items() if k.startswith(metric_name)
+    ]
     return sum(avg_stream_acc) / float(len(avg_stream_acc))

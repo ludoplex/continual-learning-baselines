@@ -13,10 +13,7 @@ class LFL(unittest.TestCase):
 
     def test_pmnist(self):
         res = lfl_pmnist({'seed': 0})
-        exps_acc = []
-        for k, v in res.items():
-            if k.startswith('Top1_Acc_Exp'):
-                exps_acc.append(v)
+        exps_acc = [v for k, v in res.items() if k.startswith('Top1_Acc_Exp')]
         target_acc = get_target_result('lfl', 'pmnist')
         print(f"LFL-PMNIST Experiences Accuracy: {exps_acc}")
 

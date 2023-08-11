@@ -66,17 +66,12 @@ def shrinking_experience_size_split_strategy(
     exp_dataset = experience.dataset
     exp_indices = list(range(len(exp_dataset)))
 
-    result_datasets = []
-
     exp_indices = \
         torch.as_tensor(exp_indices)[
             torch.randperm(len(exp_indices))
         ].tolist()
 
-    result_datasets.append(AvalancheSubset(
-        exp_dataset, indices=exp_indices[0:experience_size]))
-
-    return result_datasets
+    return [AvalancheSubset(exp_dataset, indices=exp_indices[:experience_size])]
 
 
 def setup_mnist():

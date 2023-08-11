@@ -58,7 +58,7 @@ def deep_slda_core50(override_args=None):
         "pre-trained weights. Performance should still match.")
 
     res = None
-    for i, exp in enumerate(benchmark.train_stream):
+    for exp in benchmark.train_stream:
         cl_strategy.train(exp)
         res = cl_strategy.eval(benchmark.test_stream)
 

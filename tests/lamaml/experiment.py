@@ -31,8 +31,9 @@ class LaMAML(unittest.TestCase):
         """
         res = lamaml_stinyimagenet({'seed': 0})
         avg_stream_acc = get_average_metric(res)
-        print(f"LaMAML-SplitTinyImageNet Average Stream Accuracy: " + \
-              f"{avg_stream_acc:.2f}")
+        print(
+            f"LaMAML-SplitTinyImageNet Average Stream Accuracy: {avg_stream_acc:.2f}"
+        )
 
         target_acc = float(get_target_result('lamaml', 'stiny-imagenet'))
         if target_acc > avg_stream_acc:
